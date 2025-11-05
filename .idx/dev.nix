@@ -24,18 +24,28 @@
     # Enable previews
     previews = {
       enable = true;
-      previews = {
-        # web = {
-        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
-        #   # and show it in IDX's web preview panel
-        #   command = ["npm" "run" "dev"];
-        #   manager = "web";
-        #   env = {
-        #     # Environment variables to set for your server
-        #     PORT = "$PORT";
-        #   };
-        # };
+
+
+
+    previews = {
+        web = {
+          # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
+          # and show it in IDX's web preview panel
+          # command = ["npm" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0"];
+          # command = ["bun" "dev" "--" "--host" "$HOST" "--port" "$PORT"];
+          command = ["bun" "dev" "--" "--host" "0.0.0.0" "--port" "$PORT"];
+          manager = "web";
+          env = {
+          #   # Environment variables to set for your server
+            PORT = "9000";
+            HOST = "0.0.0.0";
+          };
+        };
       };
+
+
+
+
     };
     # Workspace lifecycle hooks
     workspace = {
