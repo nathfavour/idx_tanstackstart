@@ -2,13 +2,15 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "unstable"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
     # pkgs.go
     # pkgs.python311
     # pkgs.python311Packages.pip
-    # pkgs.nodejs_20
+    pkgs.nodejs_24
+    pkgs.gh
+    pkgs.bun
     # pkgs.nodePackages.nodemon
   ];
   # Sets environment variables in the workspace
@@ -40,7 +42,9 @@
       # Runs when a workspace is first created
       onCreate = {
         # Example: install JS dependencies from NPM
-        # npm-install = "npm install";
+        nvm-install = "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash";
+        tanstack-start = "bun create @tanstack/start@latest .";
+        bun-install = "bun i";
         # Open editors for the following files by default, if they exist:
         default.openFiles = [ ".idx/dev.nix" "README.md" ];
       };
